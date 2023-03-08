@@ -1,0 +1,15 @@
+--
+
+- hosts: all
+  become: true
+  tasks:
+
+    - name: install apache2 package
+     apt:
+      name: apache2
+
+     pacman:
+      name: apache2
+
+     apk:
+      name: apache2
