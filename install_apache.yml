@@ -1,15 +1,23 @@
---
+---
 
 - hosts: all
   become: true
   tasks:
 
-    - name: install apache2 package
-     apt:
-      name: apache2
+  - name: for apt
+    apt:
+      name: nmap
+      state: absent
+    when: ansible_distribution == "Linux Mint"
 
-     pacman:
-      name: apache2
+  - name: for redhat
+    yum:
+      name: nmap
+      state: absent
+    when: ansible_distribution == "RedHat"
 
-     apk:
-      name: apache2
+  - name: For arch
+    pacman:
+         name: nmap
+         state: latest
+    when: ansible_distribution =="Archlinux"
